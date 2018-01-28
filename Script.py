@@ -12,3 +12,8 @@ uOpen = uReq(url)
 page_html = uOpen.read()
 # close the connection
 uOpen.close()
+
+# html parser
+page_soup = soup(page_html, 'html.parser')
+# grab author name
+page_soup.findAll('h2')[0].text
