@@ -99,3 +99,43 @@ for artist, works, currency, price in zip(artist_container, works_container, cur
            +'  },' + '\n')
     print(out)
 print(']')
+
+#------ Task 1~4: 20 min ------#
+
+## Task 5 - Grab from 2017-12-20 directory
+artist2_container = []
+works2_container = []
+currency2_container = []
+price2_container = []
+for filename in glob.glob('/Users/Yifan/Downloads/lot-parser/data/2017-12-20/*.html'):
+    page_soup = soup(open(filename, "r").read(), 'html5lib')
+    
+    for container in containers:
+        artist = page_soup.findAll('h3', {'class': 'artist'})[0]
+        artist2_container.append(artist.text)
+        
+        work = page_soup.findAll('h3')[1]
+        works2_container.append(work.text)
+        
+        currency = page_soup.findAll('span', {'class': 'currency'})[0]
+        currency2_container.append(currency.text)
+        
+        price = page_soup.findAll('span')[1]
+        price2_container.append(price.text)
+        
+print(artist2_container)
+print(works2_container)
+print(currency2_container)
+print(price2_container)
+
+
+## Output - Completed output from 2017-12-20 directory
+print('[')
+for artist, works, currency, price in zip(artist2_container, works2_container, currency2_container, price2_container):
+    out = ('  {' + '\n' 
+           + '    artist: ' + "'" + artist + "'" + ', ' + '\n' 
+           + '    works: ' + '[' + '\n'
+           + '    { ' + "title: '" + works + "', currency: '" + currency + "', amount: '" + price + "' }," + '\n'
+           +'  },' + '\n')
+    print(out)
+print(']')
