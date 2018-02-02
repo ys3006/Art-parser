@@ -199,3 +199,39 @@ for i in range(len(Artist)):
     else:
         value2 = (Works[i], Currency[i], Price[i])
         D[key].append(value2)
+
+        
+## Final Task III - Return total value(T) for each artist
+
+# T is dict for storing totalValue for each key from D above
+T = {}
+for key in D.keys():
+    value = D[key]
+    totalValue = 0
+    for j in range(len(value)):
+        V = value[j][2]
+        totalValue += float(V.replace(',',''))
+    T[key] = str(totalValue)
+    
+    
+## Final Output - artist + totalValue + title ＋ currency + totalLifetimeValue
+# print out final format
+
+print('[')
+
+for key in D.keys():
+    value = D[key]
+    totalValue = T[key]
+    outer_frame = ('  {' + '\n' 
+                   + "    artist: '" + key + "'," + '\n'
+                   + "    totalValue: 'USD " + totalValue + "'," + '\n'
+                   + "    works: [")
+    print(outer_frame)
+    for j in range(len(value)):
+        inner_frame = ("      { title: '" + value[j][0] 
+                       + "', currency: '" + value[j][1] 
+                       + "', totalLifetimeValue: '" + value[j][2] + "' },")
+        print(inner_frame)
+    print("    ]," + '\n' + "  },")
+
+print(']')
