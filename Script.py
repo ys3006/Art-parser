@@ -17,3 +17,18 @@ uOpen.close()
 page_soup = soup(page_html, 'html.parser')
 # grab author name
 page_soup.findAll('h2')[0].text
+
+
+## Task 1 - artist
+import glob
+
+artist_container = []
+for filename in glob.glob('/Users/Yifan/Downloads/lot-parser/data/2015-03-18/*.html'):
+    page_soup = soup(open(filename, "r").read(), 'html5lib')
+    containers = page_soup.findAll('body')
+    
+    for container in containers:
+        artist = container.findAll('h2')[0]
+        artist_container.append(artist.text)
+
+print(artist_container)
