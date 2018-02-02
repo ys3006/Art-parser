@@ -66,3 +66,36 @@ for artist, works, price in zip(artist_container, works_container, price_contain
     print(out)
 print(']')
 
+
+# separate currency and amount from pirce container
+sep = []
+for word in price_container:
+    line = word.split(' ')
+    sep.append(line)
+print(sep)
+
+
+# store currency and amount in two lists: currency_container and price_container2
+currency_container = []
+price_container2 = []
+
+for item in sep:
+    curr = item[0]
+    num = item[1]
+    currency_container.append(curr)
+    price_container2.append(num)
+    
+print(currency_container)
+print(price_container2)
+
+## Output - artist + works ＋ currency + price amount
+# print output for 2015-03-18 directory
+print('[')
+for artist, works, currency, price in zip(artist_container, works_container, currency_container, price_container2):
+    out = ('  {' + '\n' 
+           + '    artist: ' + "'" + artist + "'" + ', ' + '\n' 
+           + '    works: ' + '[' + '\n'
+           + '    { ' + "title: '" + works + "', currency: '" + currency + "', amount: '" + price + "' }," + '\n'
+           +'  },' + '\n')
+    print(out)
+print(']')
