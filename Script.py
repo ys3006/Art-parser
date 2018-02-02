@@ -183,3 +183,19 @@ Artist = artist_container + artist2_container
 Works = works_container + works2_container
 Currency = currency_container + currency2_container
 Price = price_container2 + price2_container
+
+
+## Final Task II - Create dictionary
+
+# D is dict for storing key(artist name): [title1, currency1, amount1], [title2, currency1, amount1]
+D = {}
+for i in range(len(Artist)):
+    key = Artist[i]
+    # if key not in dict, add them in
+    if key not in D.keys():
+        value = [(Works[i], Currency[i], Price[i])]
+        D[key] = value
+    # if key exists, add value under that key
+    else:
+        value2 = (Works[i], Currency[i], Price[i])
+        D[key].append(value2)
