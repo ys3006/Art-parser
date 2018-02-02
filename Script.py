@@ -139,3 +139,18 @@ for artist, works, currency, price in zip(artist2_container, works2_container, c
            +'  },' + '\n')
     print(out)
 print(']')
+
+
+## Task 6 - Convert the amount of all works to USD
+import locale
+locale.setlocale( locale.LC_ALL, 'en_US.UTF-8' ) 
+rate = 1.34 # 1 GBP = 1.34 USD
+
+# Since only for data from 2015-03-18 has GBP currency
+for i in range(len(currency_container)):
+    if currency_container[i] == 'GBP':
+        # convert string with commas to int for multiply
+        price_container2[i] = locale.atoi(price_container2[i]) * rate
+        # convert int to string with commas as thousands separators
+        price_container2[i] = "{:,}".format(price_container2[i])
+        currency_container[i] = 'USD'
