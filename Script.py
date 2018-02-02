@@ -19,10 +19,11 @@ page_soup = soup(page_html, 'html.parser')
 page_soup.findAll('h2')[0].text
 
 
-## Task 1 - artist
+## Task 1 - artist + works
 import glob
 
 artist_container = []
+works_container = []
 for filename in glob.glob('/Users/Yifan/Downloads/lot-parser/data/2015-03-18/*.html'):
     page_soup = soup(open(filename, "r").read(), 'html5lib')
     containers = page_soup.findAll('body')
@@ -30,5 +31,20 @@ for filename in glob.glob('/Users/Yifan/Downloads/lot-parser/data/2015-03-18/*.h
     for container in containers:
         artist = container.findAll('h2')[0]
         artist_container.append(artist.text)
+        
+        work = container.findAll('h3')[0]
+        works_container.append(work.text)
 
 print(artist_container)
+print(works_container)
+
+## Output - artist + works
+# print output for 2015-03-18 directory
+print('[')
+for artist, works in zip(artist_container, works_container):
+    out = ('  {' + '\n' 
+           + '    artist: ' + "'" + artist + "'" + ', ' + '\n' 
+           + '    works: [' + works + "']," + '\n'
+           +'  },' + '\n')
+    print(out)
+print(']')
