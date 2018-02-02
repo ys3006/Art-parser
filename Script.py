@@ -154,3 +154,32 @@ for i in range(len(currency_container)):
         # convert int to string with commas as thousands separators
         price_container2[i] = "{:,}".format(price_container2[i])
         currency_container[i] = 'USD'
+
+        
+# For final task, given that some of artists have multiple works;
+# since artist names is unique, to return all of the work for each artist,
+# consider using dictionary, where key is the artist name
+
+
+
+## Final Task I - Preprocessing
+
+# Before creating dictionary, I found artist name from two directories not in the same format,
+# some of them along with (birth year - death year),
+# clean the artist name format by removing the date for next step of pairing keys
+
+import re
+# remove everything inside brackets together with "()", and taking out the space at begining and end
+
+for i in range(len(artist_container)):
+    artist_container[i] = re.sub(r'\(.*?\)', '', artist_container[i]).strip()
+
+for i in range(len(artist2_container)):
+    artist2_container[i] = re.sub(r'\(.*?\)', '', artist2_container[i]).strip()
+    
+    
+# To iterate through outputs from two directories, combine dataset together
+Artist = artist_container + artist2_container
+Works = works_container + works2_container
+Currency = currency_container + currency2_container
+Price = price_container2 + price2_container
